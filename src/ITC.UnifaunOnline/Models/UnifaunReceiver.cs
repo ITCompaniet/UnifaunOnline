@@ -12,5 +12,11 @@ namespace ITC.UnifaunOnline.Models
         
         [XmlIgnore]
         public string DoorCode;
+        
+        /// <summary>
+        /// Partner (carrier) information must be supplied in those cases senders are not predefined in the online systems or UFPS.
+        /// </summary>
+        [XmlElement("partner")]
+        public UnifaunPartner Partner { get; set; }
     }
 }
