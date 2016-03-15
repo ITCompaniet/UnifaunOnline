@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ITC.UnifaunOnline")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("UnifaunOnline Order XML Generator")]
+[assembly: AssemblyDescription("UnifaunOnline Order XML Generator")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("ITCompaniet AB")]
 [assembly: AssemblyProduct("ITC.UnifaunOnline")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCopyright("Copyright © ITCompaniet AB 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
