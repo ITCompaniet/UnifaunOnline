@@ -1,4 +1,5 @@
-﻿using ITC.UnifaunOnline.Models;
+﻿using System.IO;
+using ITC.UnifaunOnline.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ITC.UnifaunOnline.Tests
@@ -6,45 +7,49 @@ namespace ITC.UnifaunOnline.Tests
     [TestClass]
     public class UnifaunOnlineServiceTest
     {
-        [TestMethod]
-        public void GenerateXmlContentTest()
+        #region Test data
+
+        private UnifaunData testData = new UnifaunData
         {
-            var data = new UnifaunData
+            Sender = new UnifaunSender
             {
-                Sender = new UnifaunSender
-                {
-                    SenderId = "123",
-                    Name = "Kalle Svensson",
-                    Address1 = "Storgatan 1"
-                },
-                Receiver = new UnifaunReceiver()
-                {
-                    ReceiverId = "321",
-                    Name = "Kalle Olsson",
-                    Address1 = "Storgatan 123",
-                    ZipCode = "132 45",
-                    Country = "SE"
-                },
-                Party = new UnifaunParty()
-                {
-                    PartyId = "321",
-                    Name = "Party Olsson",
-                    Address1 = "Storgatan 456",
-                    ZipCode = "3245",
-                    Country = "NO"
-                },
-                Shipment = new UnifaunShipment
-                {
-                    From = "123",
-                    To = "321",
-                    Reference = "Order 123",
-                    Freetext1 = "Freee",
-                    OrderNo = "123",
-                    UfOnline = new UnifaunUfOnline(Options.ENot("kalle@company.se", "Testing!")),
-                    Service = new UnifaunService("ASPO", 
-                        Addons.Sms("0703305551"),
-                        Addons.Cod(123.50m, "COD Ref1")),
-                    Containers = new [] { new UnifaunContainer
+                SenderId = "123",
+                Name = "Kalle Svensson",
+                Address1 = "Skickargatan 1",
+                ZipCode = "132 45",
+                City = "Skickarstaden",
+                Country = "SE"
+            },
+            Receiver = new UnifaunReceiver()
+            {
+                ReceiverId = "321",
+                Name = "Kalle Ökvist",
+                Address1 = "Storgatan 123",
+                ZipCode = "132 45",
+                City = "Mottagarstaten",
+                Country = "SE"
+            },
+            Party = new UnifaunParty()
+            {
+                PartyId = "321",
+                Name = "Party Olsson",
+                Address1 = "Storgatan 456",
+                ZipCode = "3245",
+                City = "Partystaden",
+                Country = "NO"
+            },
+            Shipment = new UnifaunShipment
+            {
+                From = "123",
+                To = "321",
+                Reference = "Order 123",
+                Freetext1 = "Freee",
+                OrderNo = "123",
+                UfOnline = new UnifaunUfOnline(Options.ENot("kalle@company.se", "Testing!")),
+                Service = new UnifaunService("ASPO",
+                    Addons.Sms("0703305551"),
+                    Addons.Cod(123.50m, "COD Ref1")),
+                Containers = new[] { new UnifaunContainer
                         {
                             Type = ContainerType.Parcel,
                             Copies = 2,
@@ -60,10 +65,22 @@ namespace ITC.UnifaunOnline.Tests
                         },
                         new UnifaunContainer(25.5m, "Cool stuffs")
                     }
-                }
-            };
+            }
+        };
 
-            var content = UnifaunOnlineService.GenerateXmlContent(data);
+        #endregion
+
+        [TestMethod]
+        public void GenerateXmlContentTest()
+        {
+            var content = UnifaunOnlineService.GenerateXmlContent(testData);
+        }
+
+        [TestMethod]
+        public void SaveXmlContentTest()
+        {
+            var content = UnifaunOnlineService.GenerateXmlContent(testData);
+            File.WriteAllText(@"c:\temp\unifaun\_test.xml", content);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ITC.UnifaunOnline.Models;
 using System.IO;
+using System.Text;
 using System.Xml.Serialization;
 
 namespace ITC.UnifaunOnline
@@ -13,7 +14,7 @@ namespace ITC.UnifaunOnline
         /// <returns>Unifaun Order XML Content</returns>
         public static string GenerateXmlContent(UnifaunData data)
         {
-            using (var writer = new StringWriter())
+            using (var writer = new Utf8StringWriter())
             {
                 data.ToXml(writer);
                 return writer.ToString();
@@ -26,5 +27,10 @@ namespace ITC.UnifaunOnline
             xns.Add(string.Empty, string.Empty);
             new XmlSerializer(typeof (T)).Serialize(writer, objectToSerialize, xns);
         }
+    }
+
+    public class Utf8StringWriter : StringWriter
+    {
+        public override Encoding Encoding => Encoding.UTF8;
     }
 }
