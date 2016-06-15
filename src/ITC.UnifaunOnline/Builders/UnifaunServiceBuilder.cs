@@ -62,9 +62,10 @@ namespace ITC.UnifaunOnline.Builders
         {
             if (_smsNumber != null)
                 _addons.Add(Addons.SmsNot(_serviceCode, _smsNumber));
-
             else if (_emailAddress != null)
                 _addons.Add(Addons.EmailNot(_serviceCode, _emailAddress));
+            else
+                _addons.Add(Addons.LetterNot(_serviceCode));
 
             if (_amount.HasValue)
                 _addons.Add(Addons.Cod(_serviceCode, _amount.Value, _reference, _smsNumber, _emailAddress));

@@ -75,7 +75,7 @@ namespace ITC.UnifaunOnline.Tests
             }
         };
 
-        private UnifaunData ASPOC_data = new UnifaunData
+        public static UnifaunData ASPOC_data = new UnifaunData
         {
             Sender = new UnifaunSender
             {
@@ -107,7 +107,41 @@ namespace ITC.UnifaunOnline.Tests
             }
         };
 
-        private UnifaunData P19_data = new UnifaunData
+
+        public static UnifaunData ASPOR_data = new UnifaunData
+        {
+            Sender = new UnifaunSender
+            {
+                SenderId = "321",
+                Name = "Test Testsson",
+                Address1 = "Testgatan 123",
+                ZipCode = "93162",
+                City = "Skellefteå",
+                Country = "SE"
+            },
+            Receiver = new UnifaunReceiver()
+            {
+                ReceiverId = "123",
+                Name = "Test Testsson",
+                Address1 = "Testgatan 123",
+                ZipCode = "93162",
+                City = "Skellefteå",
+                Country = "SE"
+            },
+            Shipment = new UnifaunShipment
+            {
+                From = "321",
+                To = "123",
+                UfOnline = new UnifaunUfOnline(Options.SendPrintLink("kenny.westermark@itcompaniet.se", "Testing!", "kenny.westermark@itcompaniet.se")),
+                Service = UnifaunServiceBuilder.Service("ASPOR").Build(),
+                Containers = new[]
+                {
+                    new UnifaunContainer(10m, "Return stuffs")
+                }
+            }
+        };
+
+        public static UnifaunData P19_data = new UnifaunData
         {
             Sender = new UnifaunSender
             {
@@ -274,6 +308,9 @@ namespace ITC.UnifaunOnline.Tests
 
         #endregion
 
+        /// <summary>
+        /// DHL Service Point
+        /// </summary>
         [TestMethod]
         public void ASPO_full_Test()
         {
@@ -282,12 +319,26 @@ namespace ITC.UnifaunOnline.Tests
             XmlAssertion.AssertXmlEquals(ASPO_full_xml, content);
         }
 
+        /// <summary>
+        /// DHL Service Point Cod
+        /// </summary>
         [TestMethod]
         public void ASPOC_Test()
         {
             var content = UnifaunOnlineService.GenerateXmlContent(ASPOC_data);
 
             XmlAssertion.AssertXmlEquals(ASPOC_xml, content);
+        }
+
+        /// <summary>
+        /// DHL Service Point Return
+        /// </summary>
+        [TestMethod]
+        public void ASPOR_Test()
+        {
+            var content = UnifaunOnlineService.GenerateXmlContent(ASPOR_data);
+
+            //XmlAssertion.AssertXmlEquals(ASPOC_xml, content);
         }
 
         [TestMethod]

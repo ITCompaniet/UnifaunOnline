@@ -140,16 +140,16 @@ namespace ITC.UnifaunOnline.Elements
         {
             switch (serviceCode)
             {
-                case "ASPOC": // DHL Service Point, CoD
-                    return null; // Sets in CoD
-
                 // PostNord
                 case "P19": // PostNord MyPack
                     return new UnifaunAddon("NOTLTR");
 
                 case "ASPO": // DHL Service Point
-                default:
                     return new UnifaunAddon("NOT", miscType: "LETTER");
+
+                case "ASPOC": // DHL Service Point, CoD (Sets in CoD)
+                default:
+                    return null; 
             }
         }
 

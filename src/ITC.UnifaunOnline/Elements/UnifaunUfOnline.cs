@@ -28,10 +28,16 @@ namespace ITC.UnifaunOnline.Elements
             [XmlIgnore] public string SendMail;
             [XmlIgnore] public string From;
             [XmlIgnore] public string To;
+
             /// <summary>
             /// Mailtemplate. Used for ”Anpassad föravisering”
             /// </summary>
             [XmlIgnore] public string MailTemplate;
+
+            /// <summary>
+            /// yes if you want to send e-mail (PrintLink only)
+            /// </summary>
+            [XmlIgnore] public string SendEmail;
         }
     }
 
@@ -48,6 +54,20 @@ namespace ITC.UnifaunOnline.Elements
                 Cc = cc,
                 Bcc = bcc,
                 MailTemplate = mailTemplate
+            };
+        }
+
+        public static UnifaunUfOnline.UnifaunOption SendPrintLink(string to, string message, string from, string cc = null, string bcc = null)
+        {
+            return new UnifaunUfOnline.UnifaunOption
+            {
+                OptionId = "LNKPRTN",
+                To = to,
+                Message = message,
+                From = from,
+                Cc = cc,
+                Bcc = bcc,
+                SendEmail = "yes"
             };
         }
     }
