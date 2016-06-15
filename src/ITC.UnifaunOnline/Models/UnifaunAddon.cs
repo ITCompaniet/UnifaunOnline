@@ -1,4 +1,7 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
+using ITC.UnifaunOnline.Helpers;
+// ReSharper disable RedundantCaseLabel
 
 namespace ITC.UnifaunOnline.Models
 {
@@ -7,6 +10,15 @@ namespace ITC.UnifaunOnline.Models
     /// </summary>
     public class UnifaunAddon : UnifaunValues
     {
+        public UnifaunAddon() { }
+
+        public UnifaunAddon(string addonId = null, string misc = null, string miscType = null)
+        {
+            AddonId = addonId;
+            Misc = misc;
+            MiscType = miscType;
+        }
+
         [XmlAttribute("adnid")]
         public string AddonId { get; set; }
 
@@ -85,32 +97,128 @@ namespace ITC.UnifaunOnline.Models
 
     public static class Addons
     {
-        public static UnifaunAddon Sms(string smsNumber)
+        /// <summary>
+        /// Email Notification
+        /// </summary>
+        /// <param name="serviceCode">Unifaun Service Code</param>
+        /// <param name="emailAddress">Email address</param>
+        /// <returns></returns>
+        public static UnifaunAddon EmailNot(string serviceCode, string emailAddress)
         {
-            return new UnifaunAddon
+            if (!EmailValidator.IsValid(emailAddress))
+                throw new Exception($"Invalid Email ({emailAddress})");
+
+            switch (serviceCode)
             {
-                AddonId = "NOTSMS",
-                Misc = smsNumber
-            };
+                case "ASPOC": // DHL Service Point, CoD
+                    return null; // Sets in CoD
+
+                // PostNord
+                case "P19": // PostNord MyPack
+                    return new UnifaunAddon("NOTEMAIL", emailAddress);
+
+                case "P32": // PostNord Hempaket 
+                    return new UnifaunAddon("DLVNOT") { Text4 = emailAddress };
+
+                // DB Schenker
+                case "BHP": // DB SCHENKERprivpak - Ombud Standard
+                    return new UnifaunAddon("NOT") { Text4 = emailAddress };
+            
+                case "ASPO": // DHL Service Point
+                default:
+                    return new UnifaunAddon("NOT", emailAddress, "EMAIL");
+            }
         }
 
-        public static UnifaunAddon PreNot(string smsNumber)
+        /// <summary>
+        /// Letter notification
+        /// </summary>
+        /// <param name="serviceCode">Unifaun Service Code</param>
+        /// <returns></returns>
+        public static UnifaunAddon LetterNot(string serviceCode)
         {
-            return new UnifaunAddon
+            switch (serviceCode)
             {
-                AddonId = "PRENOT",
-                Text3 = smsNumber
-            };
+                case "ASPOC": // DHL Service Point, CoD
+                    return null; // Sets in CoD
+
+                // PostNord
+                case "P19": // PostNord MyPack
+                    return new UnifaunAddon("NOTLTR");
+
+                case "ASPO": // DHL Service Point
+                default:
+                    return new UnifaunAddon("NOT", miscType: "LETTER");
+            }
         }
 
-        public static UnifaunAddon Cod(decimal amount, string reference)
+        /// <summary>
+        /// SMS Notification
+        /// </summary>
+        /// <param name="serviceCode">Unifaun Service Code</param>
+        /// <param name="smsNumber">SMS Number</param>
+        /// <returns></returns>
+        public static UnifaunAddon SmsNot(string serviceCode, string smsNumber)
         {
-            return new UnifaunAddon
+            switch (serviceCode)
             {
-                AddonId = "COD",
-                Amount = amount,
-                Reference = reference
-            };
+                case "ASPOC": // DHL Service Point, CoD
+                    return null; // Sets in CoD
+
+                // PostNord
+                case "P19": // PostNord MyPack
+                    return new UnifaunAddon("NOTSMS", smsNumber);
+
+                case "P32": // PostNord Hempaket 
+                    return new UnifaunAddon("DLVNOT") { Text3 = smsNumber };
+                    
+                // DB Schenker
+                case "BHP": // DB SCHENKERprivpak - Ombud Standard
+                    return new UnifaunAddon("NOT") { Text3 = smsNumber };
+            
+                case "AEX": // DHL Paket
+                case "ASPO": // DHL Service Point
+                case "ASP2": // DHL Pall
+                case "ASWP2": // DHL Parti
+                case "ASWS2": // DHL Stycke
+                default:
+                    return new UnifaunAddon("NOT", smsNumber, "SMS");
+
+            }
+        }
+
+        /// <summary>
+        /// Cash On Delivery
+        /// </summary>
+        /// <param name="serviceCode">Unifaun Service Code</param>
+        /// <param name="amount">Amount</param>
+        /// <param name="reference">Payment reference</param>
+        /// <param name="smsNumber">Only for DHL Service Point</param>
+        /// <param name="email">Only for DHL Service Point</param>
+        /// <returns></returns>
+        public static UnifaunAddon Cod(string serviceCode, decimal amount, string reference, string smsNumber = null, string email = null)
+        {
+            switch (serviceCode)
+            {
+                case "ASPOC": // DHL Service Point, CoD
+
+                    return new UnifaunAddon
+                    {
+                        AddonId = "COD",
+                        Amount = amount,
+                        Reference = reference,
+                        Misc = smsNumber ?? email,
+                        MiscType = smsNumber != null ? "SMS" : (email != null ? "EMAIL" : "LETTER")
+                    };
+
+                default:
+                    return new UnifaunAddon
+                    {
+                        AddonId = "COD",
+                        Amount = amount,
+                        Reference = reference
+                    };
+            }
         }
     }
 }
