@@ -52,5 +52,11 @@ namespace ITC.UnifaunOnline.Elements
         /// </summary>
         [XmlIgnore]
         public string VatNo;
+
+        /// <summary>
+        /// Contact person
+        /// </summary>
+        [XmlIgnore]
+        public string Contact;
     }
 }
