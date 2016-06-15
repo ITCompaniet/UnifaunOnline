@@ -4,7 +4,7 @@ using ITC.UnifaunOnline.Helpers;
 
 // ReSharper disable RedundantCaseLabel
 
-namespace ITC.UnifaunOnline.Messages
+namespace ITC.UnifaunOnline.Elements
 {
     /// <summary>
     /// Add-on services, such as Cash On Delivery and Receiver payment, can be supplied in this element

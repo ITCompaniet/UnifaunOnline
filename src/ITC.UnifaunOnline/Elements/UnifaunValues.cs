@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 
-namespace ITC.UnifaunOnline.Messages
+namespace ITC.UnifaunOnline.Elements
 {
     public abstract class UnifaunValues
     {

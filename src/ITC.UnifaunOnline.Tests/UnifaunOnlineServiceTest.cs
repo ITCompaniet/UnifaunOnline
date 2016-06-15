@@ -1,5 +1,6 @@
 ﻿using System.IO;
-using ITC.UnifaunOnline.Messages;
+using ITC.UnifaunOnline.Builders;
+using ITC.UnifaunOnline.Elements;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using XmlUnit.Xunit;
 // ReSharper disable FieldCanBeMadeReadOnly.Local

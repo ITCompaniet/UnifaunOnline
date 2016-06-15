@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace ITC.UnifaunOnline.Messages
+namespace ITC.UnifaunOnline.Elements
 {
     /// <summary>
     /// The shipment element defines the shipment itself and its presence in the file is mandatory. Sender, receiver, delivery terms,

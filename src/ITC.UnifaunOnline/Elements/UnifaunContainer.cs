@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace ITC.UnifaunOnline.Messages
+namespace ITC.UnifaunOnline.Elements
 {
     /// <summary>
     /// The container element defines contents of the shipment, e.g. number of parcels, weight and volume.

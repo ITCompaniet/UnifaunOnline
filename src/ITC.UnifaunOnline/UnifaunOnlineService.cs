@@ -2,7 +2,7 @@
 using System.Net;
 using System.Text;
 using System.Xml.Serialization;
-using ITC.UnifaunOnline.Messages;
+using ITC.UnifaunOnline.Elements;
 using ITC.UnifaunOnline.Responses;
 
 namespace ITC.UnifaunOnline

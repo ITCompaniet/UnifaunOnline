@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace ITC.UnifaunOnline.Messages
+namespace ITC.UnifaunOnline.Elements
 {
     /// <summary>
     /// The sender element contains sender's information and its occurrence is not always mandatory in a file.

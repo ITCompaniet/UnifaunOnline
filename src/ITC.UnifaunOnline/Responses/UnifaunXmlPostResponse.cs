@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Xml.Serialization;
-using ITC.UnifaunOnline.Messages;
+using ITC.UnifaunOnline.Elements;
 
 namespace ITC.UnifaunOnline.Responses
 {
