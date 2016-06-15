@@ -15,8 +15,9 @@ namespace ITC.UnifaunOnline.Elements
             {
                 return (from field in GetType().GetFields(BindingFlags.Public | BindingFlags.Instance)
                     let value = field.GetValue(this)
-                    where value != null
-                    select new UnifaunValue(field.Name.ToLower(), ToInvariantString(value))).ToArray();
+                    where (value != null && field.FieldType != typeof(string)) 
+                    || (value != null && field.FieldType == typeof(string) && value.ToString() != "")
+                        select new UnifaunValue(field.Name.ToLower(), ToInvariantString(value))).ToArray();
             }
             set { }
         }

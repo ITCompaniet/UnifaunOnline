@@ -349,7 +349,26 @@ namespace ITC.UnifaunOnline.Tests
             XmlAssertion.AssertXmlEquals(P19_xml, content);
         }
 
-       [TestMethod]
+
+        [TestMethod]
+        public void EmptyVal_Test()
+        {
+            var content = UnifaunOnlineService.GenerateXmlContent(new UnifaunData
+            {
+                Receiver = new UnifaunReceiver()
+                {
+                    Sms = ""
+                }
+            });
+
+            XmlAssertion.AssertXmlEquals(
+@"<?xml version=""1.0"" encoding=""utf-8""?>
+<data>
+  <receiver />
+</data>", content);
+        }
+
+        [TestMethod]
         public void SaveXmlContentTest()
         {
             var content = UnifaunOnlineService.GenerateXmlContent(ASPOC_data);
