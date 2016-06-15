@@ -65,7 +65,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GetEmbeddedPartnersTest.cs" />
     <Compile Include="EmailValidatorTests.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="XmlPostTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ITC.UnifaunOnline\ITC.UnifaunOnline.csproj">
