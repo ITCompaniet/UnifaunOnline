@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using ITC.UnifaunOnline.Models;
+using ITC.UnifaunOnline.Messages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using XmlUnit.Xunit;
 // ReSharper disable FieldCanBeMadeReadOnly.Local
@@ -12,7 +12,7 @@ namespace ITC.UnifaunOnline.Tests
     {
         #region Test data
 
-        private UnifaunData ASPO_full_data = new UnifaunData
+        public static UnifaunData ASPO_full_data = new UnifaunData
         {
             Sender = new UnifaunSender
             {

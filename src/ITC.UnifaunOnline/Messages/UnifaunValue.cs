@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace ITC.UnifaunOnline.Models
+namespace ITC.UnifaunOnline.Messages
 {
     public class UnifaunValue
     {

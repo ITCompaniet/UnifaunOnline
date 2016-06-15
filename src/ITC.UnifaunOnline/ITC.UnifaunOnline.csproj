@@ -41,22 +41,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\EmailValidator.cs" />
-    <Compile Include="Models\UnifaunAddon.cs" />
-    <Compile Include="Models\UnifaunBaseAddress.cs" />
-    <Compile Include="Models\UnifaunContainer.cs" />
-    <Compile Include="Models\UnifaunData.cs" />
-    <Compile Include="Models\UnifaunPartner.cs" />
-    <Compile Include="Models\UnifaunService.cs" />
-    <Compile Include="Models\UnifaunShipment.cs" />
-    <Compile Include="Models\UnifaunParty.cs" />
-    <Compile Include="Models\UnifaunReceiver.cs" />
-    <Compile Include="Models\UnifaunSender.cs" />
-    <Compile Include="Models\UnifaunUfOnline.cs" />
-    <Compile Include="Models\UnifaunValue.cs" />
-    <Compile Include="Models\UnifaunValues.cs" />
+    <Compile Include="Messages\UnifaunAddon.cs" />
+    <Compile Include="Messages\UnifaunBaseAddress.cs" />
+    <Compile Include="Messages\UnifaunContainer.cs" />
+    <Compile Include="Messages\UnifaunData.cs" />
+    <Compile Include="Messages\UnifaunPartner.cs" />
+    <Compile Include="Messages\UnifaunService.cs" />
+    <Compile Include="Messages\UnifaunShipment.cs" />
+    <Compile Include="Messages\UnifaunParty.cs" />
+    <Compile Include="Messages\UnifaunReceiver.cs" />
+    <Compile Include="Messages\UnifaunSender.cs" />
+    <Compile Include="Messages\UnifaunUfOnline.cs" />
+    <Compile Include="Messages\UnifaunValue.cs" />
+    <Compile Include="Messages\UnifaunValues.cs" />
     <Compile Include="Partners\EmbeddedPartners.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Partners\UnifaunServicePartner.cs" />
+    <Compile Include="Responses\UnifaunXmlPostResponse.cs" />
     <Compile Include="UnifaunOnlineService.cs" />
   </ItemGroup>
   <ItemGroup>

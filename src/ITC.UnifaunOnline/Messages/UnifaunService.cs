@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Xml.Serialization;
 
-namespace ITC.UnifaunOnline.Models
+namespace ITC.UnifaunOnline.Messages
 {
     /// <summary>
     /// This element supplies the carrier's service code and its presence is mandatory.

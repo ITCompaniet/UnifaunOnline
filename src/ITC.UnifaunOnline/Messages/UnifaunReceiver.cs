@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace ITC.UnifaunOnline.Models
+namespace ITC.UnifaunOnline.Messages
 {
     /// <summary>
     /// The element receiver contains receiver's information and its occurrence in a file is mandatory.
