@@ -9,6 +9,9 @@ if not "%PackageVersion%" == "" (
    set version=-Version %PackageVersion%
 )
 
+REM Package restore
+call %NuGet% restore "src\ITC.UnifaunOnline.Tests\packages.config" -OutputDirectory %cd%\packages -NonInteractive
+
 REM Build
 "%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" "src\ITC.UnifaunOnline.sln" /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
 if not "%errorlevel%"=="0" goto failure
