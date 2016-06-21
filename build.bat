@@ -10,7 +10,7 @@ if not "%PackageVersion%" == "" (
 )
 
 REM Build
-"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" ITC.UnifaunOnline.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
+"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" "src\ITC.UnifaunOnline.sln" /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
 if not "%errorlevel%"=="0" goto failure
 
 REM Package
