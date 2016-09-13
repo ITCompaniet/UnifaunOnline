@@ -7,6 +7,8 @@ namespace ITC.UnifaunOnline.Parsers
     {
         public static UnifaunTxtResponse Parse(string content)
         {
+            content = content.TrimEnd('\r', '\n');
+
             var lineContent = content.Split(';');
 
             var response = new UnifaunTxtResponse
@@ -14,9 +16,11 @@ namespace ITC.UnifaunOnline.Parsers
                 OrderNo = lineContent[0],
                 Unknown = lineContent[1],
                 ShippmentNumber = long.Parse(lineContent[2]),
-                Date = DateTime.Parse(lineContent[3]),
-                Reference = lineContent[4]
+                Date = DateTime.Parse(lineContent[3])
             };
+
+            if (lineContent.Length == 5)
+                response.Reference = lineContent[4];
 
             return response;
         }
