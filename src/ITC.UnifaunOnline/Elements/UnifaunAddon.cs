@@ -124,7 +124,10 @@ namespace ITC.UnifaunOnline.Elements
                 // DB Schenker
                 case "BHP": // DB SCHENKERprivpak - Ombud Standard
                     return new UnifaunAddon("NOT") { Text4 = emailAddress };
-            
+
+                case "BPA": // DB SCHENKERparcel
+                    return new UnifaunAddon("NOT") { Text4 = emailAddress };
+
                 case "ASPO": // DHL Service Point
                 default:
                     return new UnifaunAddon("NOT", emailAddress, "EMAIL");
@@ -176,7 +179,10 @@ namespace ITC.UnifaunOnline.Elements
                 // DB Schenker
                 case "BHP": // DB SCHENKERprivpak - Ombud Standard
                     return new UnifaunAddon("NOT") { Text3 = smsNumber };
-            
+
+                case "BPA": // DB SCHENKERparcel - Ombud Standard
+                    return new UnifaunAddon("NOT") { Text3 = smsNumber };
+
                 case "AEX": // DHL Paket
                 case "ASPO": // DHL Service Point
                 case "ASP2": // DHL Pall
