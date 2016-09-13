@@ -25,7 +25,7 @@ namespace ITC.UnifaunOnline.Elements
         /// Unique order number. Any contents. Mandatory.
         /// Order number is searchable in the systems but not printed on shipping documents.
         /// </summary>
-        [XmlAttribute("ordernr")]
+        [XmlAttribute("orderno")]
         public string OrderNo { get; set; }
 
         /// <summary> 
