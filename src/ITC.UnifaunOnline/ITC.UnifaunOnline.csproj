@@ -55,9 +55,11 @@
     <Compile Include="Elements\UnifaunUfOnline.cs" />
     <Compile Include="Elements\UnifaunValue.cs" />
     <Compile Include="Elements\UnifaunValues.cs" />
+    <Compile Include="Parsers\UnifaunResponseParser.cs" />
     <Compile Include="Partners\EmbeddedPartners.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Partners\UnifaunServicePartner.cs" />
+    <Compile Include="Responses\UnifaunTxtResponse.cs" />
     <Compile Include="Responses\UnifaunXmlPostResponse.cs" />
     <Compile Include="UnifaunOnlineService.cs" />
   </ItemGroup>
