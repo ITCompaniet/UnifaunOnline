@@ -8,7 +8,7 @@ namespace ITC.UnifaunOnline.Tests
         [TestMethod]
         public void XmlPost_Test()
         {
-            UnifaunOnlineService.XmlPost(UnifaunOnlineServiceTest.ASPOR_data, "0000057003", "0000057003", "DGL4");
+            UnifaunOnlineService.XmlPost(UnifaunOnlineServiceTest.ASPOR_data, "", "", "");
         }
     }
 }

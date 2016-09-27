@@ -66,6 +66,7 @@
     <Compile Include="GetEmbeddedPartnersTest.cs" />
     <Compile Include="EmailValidatorTests.cs" />
     <Compile Include="TxtResponseParseTests.cs" />
+    <Compile Include="UnifaunTrackBackAndDiscardServiceTests.cs" />
     <Compile Include="XmlPostTests.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -74,6 +74,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="UnifaunOnlineService.cs" />
+    <Compile Include="UnifaunTrackBackAndDiscardService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="unifaun_codes.txt" />
