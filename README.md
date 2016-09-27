@@ -40,9 +40,10 @@ Unifaun Online Order XML Generator
                     Freetext1 = "Freee",
                     OrderNo = "123",
                     UfOnline = new UnifaunUfOnline(Options.ENot("kalle@company.se", "Testing!")),
-                    Service = new UnifaunService("ASPO", 
-                        Addons.Sms("0703305551"),
-                        Addons.Cod(123.50m, "COD Ref1")),
+                    Service = UnifaunServiceBuilder.Service("ASPO")
+                            .SmsNot("0701234567")
+                            .Cod(123.50m, "COD Ref 1")
+                            .Build(),
                     Containers = new [] { new UnifaunContainer
                         {
                             Type = ContainerType.Parcel,
