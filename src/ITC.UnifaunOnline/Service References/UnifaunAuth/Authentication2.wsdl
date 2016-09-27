@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.unifaun.se/ws/Authentication2" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://www.unifaun.se/ws" name="Authentication2" targetNamespace="http://www.unifaun.se/ws/Authentication2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://www.unifaun.se/ws/Authentication2" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="Login1" type="tns:Login1" />
+      <xs:element name="Login1Response" type="tns:Login1Response" />
+      <xs:complexType name="Login1">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userId" type="xs:string" />
+          <xs:element minOccurs="0" name="pass" type="xs:string" />
+          <xs:element minOccurs="0" name="developerId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Login1Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wsFaultInfo">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int" />
+          <xs:element minOccurs="0" name="errorExtra" type="xs:string" />
+          <xs:element minOccurs="0" name="errorMessage" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xsd:schema xmlns:tns="http://www.unifaun.se/ws" xmlns:ns0="http://www.unifaun.se/ws/Authentication2" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.unifaun.se/ws">
+      <xsd:element name="WSException" nillable="true" type="ns0:wsFaultInfo" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="WSException">
+    <wsdl:part name="WSException" element="ns1:WSException" />
+  </wsdl:message>
+  <wsdl:message name="Login1">
+    <wsdl:part name="parameters" element="tns:Login1" />
+  </wsdl:message>
+  <wsdl:message name="Login1Response">
+    <wsdl:part name="parameters" element="tns:Login1Response" />
+  </wsdl:message>
+  <wsdl:portType name="Authentication2">
+    <wsdl:operation name="Login1">
+      <wsdl:input name="Login1" message="tns:Login1" />
+      <wsdl:output name="Login1Response" message="tns:Login1Response" />
+      <wsdl:fault name="WSException" message="tns:WSException" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Authentication2SoapBinding" type="tns:Authentication2">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login1">
+      <soap:operation soapAction="urn:Login1" style="document" />
+      <wsdl:input name="Login1">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="Login1Response">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WSException">
+        <soap:fault use="literal" name="WSException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Authentication2">
+    <wsdl:port name="Authentication2Port" binding="tns:Authentication2SoapBinding">
+      <soap:address location="https://www.unifaunonline.com/ws-extapi2/Authentication2" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

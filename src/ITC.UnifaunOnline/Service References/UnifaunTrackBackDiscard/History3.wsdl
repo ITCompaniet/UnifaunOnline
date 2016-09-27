@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.unifaun.se/ws/History3" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://www.unifaun.se/ws" name="History3" targetNamespace="http://www.unifaun.se/ws/History3" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://www.unifaun.se/ws/History3" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="DiscardShipments1" type="tns:DiscardShipments1" />
+      <xs:element name="DiscardShipments1Response" type="tns:DiscardShipments1Response" />
+      <xs:element name="FetchNewShipments1" type="tns:FetchNewShipments1" />
+      <xs:element name="FetchNewShipments1Response" type="tns:FetchNewShipments1Response" />
+      <xs:complexType name="DiscardShipments1">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="session" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="identifiers" type="xs:string" />
+          <xs:element minOccurs="0" name="identifierType" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DiscardShipments1Response">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="wsFaultInfo">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:int" />
+          <xs:element minOccurs="0" name="errorExtra" type="xs:string" />
+          <xs:element minOccurs="0" name="errorMessage" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="FetchNewShipments1">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="session" type="xs:string" />
+          <xs:element name="fetchId" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="FetchNewShipments1Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:fetchNewShipmentsResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="fetchNewShipmentsResult">
+        <xs:sequence>
+          <xs:element name="done" type="xs:boolean" />
+          <xs:element name="fetchId" type="xs:long" />
+          <xs:element name="minDelay" type="xs:long" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="shipments" nillable="true" type="tns:fetchNewShipmentsResultShipment" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="fetchNewShipmentsResultShipment">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="orderNo" type="xs:string" />
+          <xs:element name="parcelCount" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="parcelNos" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="partnerId" type="xs:string" />
+          <xs:element minOccurs="0" name="printDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="reference" type="xs:string" />
+          <xs:element minOccurs="0" name="serviceId" type="xs:string" />
+          <xs:element minOccurs="0" name="shipDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="shipmentNo" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xsd:schema xmlns:tns="http://www.unifaun.se/ws" xmlns:ns0="http://www.unifaun.se/ws/History3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.unifaun.se/ws">
+      <xsd:element name="WSException" nillable="true" type="ns0:wsFaultInfo" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="WSException">
+    <wsdl:part name="WSException" element="ns1:WSException" />
+  </wsdl:message>
+  <wsdl:message name="DiscardShipments1Response">
+    <wsdl:part name="parameters" element="tns:DiscardShipments1Response" />
+  </wsdl:message>
+  <wsdl:message name="DiscardShipments1">
+    <wsdl:part name="parameters" element="tns:DiscardShipments1" />
+  </wsdl:message>
+  <wsdl:message name="FetchNewShipments1Response">
+    <wsdl:part name="parameters" element="tns:FetchNewShipments1Response" />
+  </wsdl:message>
+  <wsdl:message name="FetchNewShipments1">
+    <wsdl:part name="parameters" element="tns:FetchNewShipments1" />
+  </wsdl:message>
+  <wsdl:portType name="History3">
+    <wsdl:operation name="DiscardShipments1">
+      <wsdl:input name="DiscardShipments1" message="tns:DiscardShipments1" />
+      <wsdl:output name="DiscardShipments1Response" message="tns:DiscardShipments1Response" />
+      <wsdl:fault name="WSException" message="tns:WSException" />
+    </wsdl:operation>
+    <wsdl:operation name="FetchNewShipments1">
+      <wsdl:input name="FetchNewShipments1" message="tns:FetchNewShipments1" />
+      <wsdl:output name="FetchNewShipments1Response" message="tns:FetchNewShipments1Response" />
+      <wsdl:fault name="WSException" message="tns:WSException" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="History3SoapBinding" type="tns:History3">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DiscardShipments1">
+      <soap:operation soapAction="urn:DiscardShipments1" style="document" />
+      <wsdl:input name="DiscardShipments1">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DiscardShipments1Response">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WSException">
+        <soap:fault use="literal" name="WSException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="FetchNewShipments1">
+      <soap:operation soapAction="urn:FetchNewShipments1" style="document" />
+      <wsdl:input name="FetchNewShipments1">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="FetchNewShipments1Response">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WSException">
+        <soap:fault use="literal" name="WSException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="History3">
+    <wsdl:port name="History3Port" binding="tns:History3SoapBinding">
+      <soap:address location="https://www.unifaunonline.com/ws-extapi2/History3" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
