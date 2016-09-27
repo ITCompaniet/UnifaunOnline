@@ -87,10 +87,7 @@ Parse TXT Reponse from Unifaun OnlineConnect
 ```
 
 ### TrackBack
-This service is used to report back shipment history and returns data on the first up to 100 shipments
-not yet returned for the current account in Unifaun Online. A number of calls can be made if there is
-data available to retrieve for more than 100 shipments. The service can also be used for discarding
-printed shipments.
+This service is used to report back shipment history
 ```CSharp
             var unifaunTrackBackAndDiscardService = new UnifaunTrackBackAndDiscardService("{DEVID}", "{USERID}", "{PASS}");
             var shipments = unifaunTrackBackAndDiscardService.FetchNewShipments();
