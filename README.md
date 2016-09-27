@@ -4,6 +4,7 @@ Unifaun Online Order XML Generator
 
 ## Usage
 
+### Generate XML
 ```CSharp
 
 
@@ -62,3 +63,43 @@ Unifaun Online Order XML Generator
             };
 
             var content = UnifaunOnlineService.GenerateXmlContent(data);
+```
+
+### Embedded Partners
+Get all Unifaun Partners
+```CSharp
+            var partners = EmbeddedPartners.GetEmbeddedPartners();
+```
+
+### XML Post
+Post XML to Unifaun Online
+```CSharp
+            var unifaunData = new UnifaunData();
+            // Fill unifaunData with data
+            
+            var success = UnifaunOnlineService.XmlPost(unifaunData, "{DEVID}", "{USERID}", "{PASS}");
+```
+
+### TXT Response
+Parse TXT Reponse from Unifaun OnlineConnect
+```CSharp
+            var response = UnifaunResponseParser.Parse(content);
+```
+
+### TrackBack
+This service is used to report back shipment history and returns data on the first up to 100 shipments
+not yet returned for the current account in Unifaun Online. A number of calls can be made if there is
+data available to retrieve for more than 100 shipments. The service can also be used for discarding
+printed shipments.
+```CSharp
+            var unifaunTrackBackAndDiscardService = new UnifaunTrackBackAndDiscardService("{DEVID}", "{USERID}", "{PASS}");
+            var shipments = unifaunTrackBackAndDiscardService.FetchNewShipments();
+```
+### Discard
+Discarding printed shipments
+```CSharp
+            var unifaunTrackBackAndDiscardService = new UnifaunTrackBackAndDiscardService("{DEVID}", "{USERID}", "{PASS}");
+            unifaunTrackBackAndDiscardService.DiscardByShipmentNo("1234567890");
+```
+
+
