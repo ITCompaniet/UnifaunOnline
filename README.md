@@ -4,6 +4,7 @@ Unifaun Online Order XML Generator
 
 ## Usage
 
+### Generate XML
 ```CSharp
 
 
@@ -39,9 +40,10 @@ Unifaun Online Order XML Generator
                     Freetext1 = "Freee",
                     OrderNo = "123",
                     UfOnline = new UnifaunUfOnline(Options.ENot("kalle@company.se", "Testing!")),
-                    Service = new UnifaunService("ASPO", 
-                        Addons.Sms("0703305551"),
-                        Addons.Cod(123.50m, "COD Ref1")),
+                    Service = UnifaunServiceBuilder.Service("ASPO")
+                            .SmsNot("0701234567")
+                            .Cod(123.50m, "COD Ref 1")
+                            .Build(),
                     Containers = new [] { new UnifaunContainer
                         {
                             Type = ContainerType.Parcel,
@@ -62,3 +64,40 @@ Unifaun Online Order XML Generator
             };
 
             var content = UnifaunOnlineService.GenerateXmlContent(data);
+```
+
+### Embedded Partners
+Get all Unifaun Partners
+```CSharp
+            var partners = EmbeddedPartners.GetEmbeddedPartners();
+```
+
+### XML Post
+Post XML to Unifaun Online
+```CSharp
+            var unifaunData = new UnifaunData();
+            // Fill unifaunData with data
+            
+            var success = UnifaunOnlineService.XmlPost(unifaunData, "{DEVID}", "{USERID}", "{PASS}");
+```
+
+### TXT Response
+Parse TXT Reponse from Unifaun OnlineConnect
+```CSharp
+            var response = UnifaunResponseParser.Parse(content);
+```
+
+### TrackBack
+This service is used to report back shipment history
+```CSharp
+            var unifaunTrackBackAndDiscardService = new UnifaunTrackBackAndDiscardService("{DEVID}", "{USERID}", "{PASS}");
+            var shipments = unifaunTrackBackAndDiscardService.FetchNewShipments();
+```
+### Discard
+Discarding printed shipments
+```CSharp
+            var unifaunTrackBackAndDiscardService = new UnifaunTrackBackAndDiscardService("{DEVID}", "{USERID}", "{PASS}");
+            unifaunTrackBackAndDiscardService.DiscardByShipmentNo("1234567890");
+```
+
+
