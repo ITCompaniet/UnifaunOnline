@@ -14,7 +14,7 @@ namespace ITC.UnifaunOnline.Partners
             using (var reader = new StreamReader(stream))
             {
                 var result = reader.ReadToEnd();
-                var lines = result.Split(new [] { "\n" }, StringSplitOptions.None);
+                var lines = result.Split(new [] { "\r\n", "\n" }, StringSplitOptions.None);
 
                 var servicePartners = new List<UnifaunServicePartner>();
 

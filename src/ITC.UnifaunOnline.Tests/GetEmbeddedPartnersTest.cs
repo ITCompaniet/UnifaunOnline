@@ -1,8 +1,10 @@
 ﻿using ITC.UnifaunOnline.Partners;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace ITC.UnifaunOnline.Tests
 {
+
     [TestClass]
     public class GetEmbeddedPartnersTest
     {
@@ -10,6 +12,8 @@ namespace ITC.UnifaunOnline.Tests
         public void EmbeddedPartners_Test()
         {
             var partners = EmbeddedPartners.GetEmbeddedPartners();
+
+            Assert.AreEqual(false, partners.First().Services.First().ToCountries.Last().Contains("\r"));
         }
     }
 }
