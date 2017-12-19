@@ -118,8 +118,17 @@ namespace ITC.UnifaunOnline.Elements
                 case "P19": // PostNord MyPack
                     return new UnifaunAddon("NOTEMAIL", emailAddress);
 
+                case "DPD": // PostNord DPD Utrikes
+                case "P17": // PostNord MyPack Home SE
                 case "P32": // PostNord Hempaket 
+                case "P52": // PostNord Pallet
                     return new UnifaunAddon("DLVNOT") { Text4 = emailAddress };
+
+                case "P14": // PostNord Parcel 12
+                case "P15": // PostNord Parcel
+                case "P31": // PostNord Parcel 09
+                case "P83": // PostNord Groupage
+                    return new UnifaunAddon("PRENOT") { Text4 = emailAddress };
 
                 // DB Schenker
                 case "BHP": // DB SCHENKERprivpak - Ombud Standard
@@ -173,9 +182,18 @@ namespace ITC.UnifaunOnline.Elements
                 case "P19": // PostNord MyPack
                     return new UnifaunAddon("NOTSMS", smsNumber);
 
+                case "DPD": // PostNord DPD Utrikes
+                case "P17": // PostNord MyPack Home SE 
                 case "P32": // PostNord Hempaket 
+                case "P52": // PostNord Pallet
                     return new UnifaunAddon("DLVNOT") { Text3 = smsNumber };
-                    
+
+                case "P14": // PostNord Parcel 12
+                case "P15": // PostNord Parcel
+                case "P31": // PostNord Parcel 09
+                case "P83": // PostNord Groupage
+                    return new UnifaunAddon("PRENOT") { Text3 = smsNumber };
+
                 // DB Schenker
                 case "BHP": // DB SCHENKERprivpak - Ombud Standard
                     return new UnifaunAddon("NOT") { Text3 = smsNumber };
