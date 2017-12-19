@@ -116,17 +116,21 @@ namespace ITC.UnifaunOnline.Elements
 
                 // PostNord
                 case "P19": // PostNord MyPack
+                case "P30": // PostNord MyPack Home Small
+                case "PAF": // PostNord - Brevpostförskott
+                case "BREKD": // PostNord - Rek (inrikes)
+                case "PUE": // PostNord - Varubrev Ekonomi 
                     return new UnifaunAddon("NOTEMAIL", emailAddress);
 
                 case "DPD": // PostNord DPD Utrikes
+                case "P14": // PostNord Parcel 12
+                case "P15": // PostNord Parcel
                 case "P17": // PostNord MyPack Home SE
+                case "P31": // PostNord Parcel 09
                 case "P32": // PostNord Hempaket 
                 case "P52": // PostNord Pallet
                     return new UnifaunAddon("DLVNOT") { Text4 = emailAddress };
 
-                case "P14": // PostNord Parcel 12
-                case "P15": // PostNord Parcel
-                case "P31": // PostNord Parcel 09
                 case "P83": // PostNord Groupage
                     return new UnifaunAddon("PRENOT") { Text4 = emailAddress };
 
@@ -140,28 +144,6 @@ namespace ITC.UnifaunOnline.Elements
                 case "ASPO": // DHL Service Point
                 default:
                     return new UnifaunAddon("NOT", emailAddress, "EMAIL");
-            }
-        }
-
-        /// <summary>
-        /// Letter notification
-        /// </summary>
-        /// <param name="serviceCode">Unifaun Service Code</param>
-        /// <returns></returns>
-        public static UnifaunAddon LetterNot(string serviceCode)
-        {
-            switch (serviceCode)
-            {
-                // PostNord
-                case "P19": // PostNord MyPack
-                    return new UnifaunAddon("NOTLTR");
-
-                case "ASPO": // DHL Service Point
-                    return new UnifaunAddon("NOT", miscType: "LETTER");
-
-                case "ASPOC": // DHL Service Point, CoD (Sets in CoD)
-                default:
-                    return null; 
             }
         }
 
@@ -180,17 +162,21 @@ namespace ITC.UnifaunOnline.Elements
 
                 // PostNord
                 case "P19": // PostNord MyPack
+                case "P30": // PostNord MyPack Home Small
+                case "PAF": // PostNord - Brevpostförskott
+                case "BREKD": // PostNord - Rek (inrikes)
+                case "PUE": // PostNord - Varubrev Ekonomi 
                     return new UnifaunAddon("NOTSMS", smsNumber);
 
                 case "DPD": // PostNord DPD Utrikes
-                case "P17": // PostNord MyPack Home SE 
+                case "P14": // PostNord Parcel 12
+                case "P15": // PostNord Parcel
+                case "P17": // PostNord MyPack Home SE
+                case "P31": // PostNord Parcel 09
                 case "P32": // PostNord Hempaket 
                 case "P52": // PostNord Pallet
                     return new UnifaunAddon("DLVNOT") { Text3 = smsNumber };
-
-                case "P14": // PostNord Parcel 12
-                case "P15": // PostNord Parcel
-                case "P31": // PostNord Parcel 09
+                    
                 case "P83": // PostNord Groupage
                     return new UnifaunAddon("PRENOT") { Text3 = smsNumber };
 
@@ -209,6 +195,28 @@ namespace ITC.UnifaunOnline.Elements
                 default:
                     return new UnifaunAddon("NOT", smsNumber, "SMS");
 
+            }
+        }
+        
+        /// <summary>
+        /// Letter notification
+        /// </summary>
+        /// <param name="serviceCode">Unifaun Service Code</param>
+        /// <returns></returns>
+        public static UnifaunAddon LetterNot(string serviceCode)
+        {
+            switch (serviceCode)
+            {
+                // PostNord
+                case "P19": // PostNord MyPack
+                    return new UnifaunAddon("NOTLTR");
+
+                case "ASPO": // DHL Service Point
+                    return new UnifaunAddon("NOT", miscType: "LETTER");
+
+                case "ASPOC": // DHL Service Point, CoD (Sets in CoD)
+                default:
+                    return null;
             }
         }
 
